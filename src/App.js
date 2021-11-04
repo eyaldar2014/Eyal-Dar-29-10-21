@@ -17,7 +17,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 import Navbar from './components/Navbar'
 import NotFound from './components/NotFound'
-import Main from './components/Main'
+import Home from './components/Home'
 import Favorites from './components/Favorites'
 
 
@@ -39,7 +39,7 @@ function App() {
               <Favorites />
             </Route>
             <Route exact path="/">
-              <Main />
+              <Home />
             </Route>
             <Route path="/">
               <NotFound />
