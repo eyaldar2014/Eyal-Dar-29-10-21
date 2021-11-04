@@ -18,9 +18,9 @@ function Main({ city, fetchCurrentWeather, fetchFiveDaysWeather }) {
   // const [error, setError] = react.useState();
 
 
-  const getCurrentWeatherFromApi = () => fetchCurrentWeather(city.locationKey)
+  // const getCurrentWeatherFromApi = () => fetchCurrentWeather(city.locationKey)
 
-  const getFiveDaysWeatherForecastFromApi =  () => fetchFiveDaysWeather(city.locationKey)
+  // const getFiveDaysWeatherForecastFromApi =  () => fetchFiveDaysWeather(city.locationKey)
 
 
   const searchLocation = () => {
@@ -35,7 +35,6 @@ function Main({ city, fetchCurrentWeather, fetchFiveDaysWeather }) {
 
   return (
     <div>
-
 
       <Stack direction="row" spacing={2}>
         <Autocomplete allowSearch={allowSearch} />
