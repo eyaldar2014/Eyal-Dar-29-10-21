@@ -1,11 +1,72 @@
-import React from 'react';
+// error handling
 
-function main(props) {
+
+import react from 'react';
+import { connect } from 'react-redux'
+import { fetchCurrentWeather, fetchFiveDaysWeather } from '../redux'
+
+import Autocomplete from '../components/Autocomplete'
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
+import CurrentMainCity from './CurrentMainCity';
+
+
+function Main({ city, fetchCurrentWeather, fetchFiveDaysWeather }) {
+
+  const [disabled, setDisabled] = react.useState(true)
+  // const [error, setError] = react.useState();
+
+
+  const getCurrentWeatherFromApi = () => fetchCurrentWeather(city.locationKey)
+
+  const getFiveDaysWeatherForecastFromApi =  () => fetchFiveDaysWeather(city.locationKey)
+
+
+  const searchLocation = () => {
+    setDisabled(true)
+
+    // getFiveDaysWeatherForecastFromApi()
+    // getCurrentWeatherFromApi()
+  }
+
+  const allowSearch = () => setDisabled(false)
+
+
   return (
     <div>
-      
+
+
+      <Stack direction="row" spacing={2}>
+        <Autocomplete allowSearch={allowSearch} />
+        <Button variant="contained" onClick={searchLocation} disabled={disabled} >
+          Give Me Weather
+        </Button>
+      </Stack>
+
+      <CurrentMainCity />
+
     </div>
   );
 }
 
-export default main;
+
+
+const mapStateToProps = state => {
+  return {
+    city: state.autocomplete.city
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCurrentWeather: (val) => dispatch(fetchCurrentWeather(val)),
+    fetchFiveDaysWeather: (val) => dispatch(fetchFiveDaysWeather(val))
+  }
+}
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main)
